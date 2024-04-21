@@ -196,10 +196,20 @@ module.exports.admin_remove_item = asyncHandler(async (req, res, next) => {
 // @desc auth admin add raw
 // @desc POST /admin/addRaw
 // @access Private
+module.exports.admin_get_raw = asyncHandler(async (req, res, next) => {
+  // const addedNewRawItem = req.body.newRawItem;
+  const rawItems = await rawItem.find({});
+  res.status(200).json({ raw: rawItems });
+});
+
+// @desc auth admin add raw
+// @desc POST /admin/addRaw
+// @access Private
 module.exports.admin_add_raw = asyncHandler(async (req, res, next) => {
   const addedNewRawItem = req.body.newRawItem;
   await rawItem.create(addedNewRawItem);
-  res.status(200).json("add raw");
+  const rawItems = await rawItem.find({});
+  res.status(200).json({ raw: rawItems });
 });
 
 // @desc auth admin update raw
@@ -207,14 +217,15 @@ module.exports.admin_add_raw = asyncHandler(async (req, res, next) => {
 // @access Private
 module.exports.admin_update_raw = asyncHandler(async (req, res, next) => {
   const currentRawItem = req.body._id;
-  console.log(currentRawItem);
   const rawItemToUpdate = await rawItem.findById({ _id: currentRawItem });
   if (rawItemToUpdate) {
-    rawItemToUpdate.ItemName = req.body.ItemName || rawItemToUpdate.ItemName;
-    rawItemToUpdate.Count = req.body.Count || rawItemToUpdate.Count;
+    rawItemToUpdate.ItemName =
+      req.body.data.ItemName || rawItemToUpdate.ItemName;
+    rawItemToUpdate.Count = req.body.data.Count || rawItemToUpdate.Count;
 
-    const updatedRawItem = await rawItemToUpdate.save();
-    res.status(200).json(updatedRawItem);
+    await rawItemToUpdate.save();
+    const rawItems = await rawItem.find({});
+    res.status(200).json({ raw: rawItems });
   } else {
     res.status(404);
     throw new Error("Item is not found");
@@ -242,15 +253,12 @@ module.exports.admin_update_raw_by_order = asyncHandler(
               const quantity = ItemQuantaties.map((item) => item[raw.ItemName])
                 .map((num, index) => num * orderQuantity[index])
                 .reduce((a, b) => a + b, 0);
-              console.log(quantity);
               raw.Count -= quantity;
               return raw.save();
             });
           }
         );
       });
-    const newResult = await rawItem.find({});
-    console.log(newResult);
   }
 );
 

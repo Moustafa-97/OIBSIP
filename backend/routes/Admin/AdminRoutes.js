@@ -19,6 +19,7 @@ const {
   admin_accept_orders,
   admin_refuse_orders,
   admin_update_raw_by_order,
+  admin_get_raw,
 } = require("../../controllers/Admin/AdminController");
 const router = express.Router();
 const { requireAdminAuth } = require("../../middleware/authAdminMiddleware");
@@ -38,6 +39,7 @@ router.post("/addItem", requireAdminAuth, admin_add_item);
 router.put("/updateItem", requireAdminAuth, admin_update_item);
 router.post("/removeItem", requireAdminAuth, admin_remove_item);
 // admin control raw items
+router.get("/getRaw", requireAdminAuth, admin_get_raw);
 router.post("/addRaw", requireAdminAuth, admin_add_raw);
 router.put("/updateRaw", requireAdminAuth, admin_update_raw);
 router.post("/removeRaw", requireAdminAuth, admin_remove_raw);

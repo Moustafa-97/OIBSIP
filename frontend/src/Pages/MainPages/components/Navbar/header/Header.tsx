@@ -31,9 +31,9 @@ export default function Header() {
   const sections =
     userState?.user?.account === "user"
       ? ["Home", "About", "Menu", "Cart", "Orders", "Profile"]
-      :userState?.user?.account === "admin"
-      ?
-       ["Home", "About", "Menu", "Orders","Profile"]:["Home", "About", "Menu","Profile"]
+      : userState?.user?.account === "admin"
+      ? ["Home", "About", "Menu", "Orders", "Raw Items", "Profile"]
+      : ["Home", "About", "Menu", "Profile"];
 
   const handleBook = (e: any) => {
     userState.state
@@ -72,6 +72,8 @@ export default function Header() {
                       ? "/user/Cart"
                       : section === "Orders"
                       ? `/${userState?.user?.account}/${section}`
+                      : section === "Raw Items"
+                      ? `/${userState?.user?.account}/rawItems`
                       : section === "Profile"
                       ? `/${userState?.user?.account}/${section}`
                       : `${section}`
@@ -84,11 +86,18 @@ export default function Header() {
                           ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                           : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                         : section === "Cart"
-                        ? location.pathname === `/${userState?.user?.account}/${section}`
+                        ? location.pathname ===
+                          `/${userState?.user?.account}/${section}`
                           ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                           : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                         : section === "Orders"
-                        ? location.pathname === `/${userState?.user?.account}/${section}`
+                        ? location.pathname ===
+                          `/${userState?.user?.account}/${section}`
+                          ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                          : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                        : section === "Raw Items"
+                        ? location.pathname ===
+                          `/${userState?.user?.account}/rawItems`
                           ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                           : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                         : section === "Profile"
@@ -138,8 +147,12 @@ export default function Header() {
                           ? "/"
                           : section === "Cart"
                           ? "/user/Cart"
+                          : section === "Orders"
+                          ? `/${userState?.user?.account}/${section}`
+                          : section === "Raw Items"
+                          ? `/${userState?.user?.account}/rawItems`
                           : section === "Profile"
-                          ? `/${userState?.user?.account}/Profile`
+                          ? `/${userState?.user?.account}/${section}`
                           : `${section}`
                       }
                     >
@@ -147,6 +160,26 @@ export default function Header() {
                         className={
                           section === "Home"
                             ? location.pathname === "/"
+                              ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                              : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                            : section === "Cart"
+                            ? location.pathname ===
+                              `/${userState?.user?.account}/${section}`
+                              ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                              : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                            : section === "Orders"
+                            ? location.pathname ===
+                              `/${userState?.user?.account}/${section}`
+                              ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                              : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                            : section === "Raw Items"
+                            ? location.pathname ===
+                              `/${userState?.user?.account}/rawItems`
+                              ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                              : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
+                            : section === "Profile"
+                            ? location.pathname ===
+                              `/${userState?.user?.account}/Profile`
                               ? ` bg-[#DBDFD0] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                               : ` hover:bg-[#dbdfd04e] rounded-[34px] w-fit h-fit px-[16px] py-[4px]`
                             : location.pathname === `/${section}`

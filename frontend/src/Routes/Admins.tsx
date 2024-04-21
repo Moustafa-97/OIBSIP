@@ -17,7 +17,7 @@ export default function Admins() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/addItem" element={<AddItems />} />
           <Route path="/editItem:id" element={<EditItems />} />
-          {/* <Route path="/rawItems" element={<RawItems />} /> */}
+          <Route path="/rawItems" element={<RawItems />} />
           <Route path="/orders" element={<Orders />} />
           {/* <Route path="/workers" element={<Workers />} /> */}
         </Routes>
