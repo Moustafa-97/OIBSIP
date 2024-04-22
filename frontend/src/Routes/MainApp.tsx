@@ -17,6 +17,8 @@ import Signup from "../Pages/Login-Signup/Signup";
 import ItemDetail from "../Pages/MainPages/ForAll/ItemDetail";
 import SuccessPage from "../Pages/MainPages/components/Success/SuccessPage";
 import Profile from "../Pages/MainPages/ForAll/Profile";
+import { FaI } from "react-icons/fa6";
+import FailPage from "../Pages/MainPages/components/Success/FailPage";
 
 export default function MainApp() {
   const dispatch = useDispatch();
@@ -67,6 +69,7 @@ export default function MainApp() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/success" element={<SuccessPage />} />
+            <Route path="/fail" element={<FailPage />} />
             
             {/* waiting */}
             {/* <Route path="/Contact" element={<HomePage />} /> */}

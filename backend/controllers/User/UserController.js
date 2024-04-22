@@ -326,7 +326,7 @@ module.exports.user_confirm_order = asyncHandler(async (req, res, next) => {
       line_items: lineItems,
       mode: "payment",
       success_url: `${process.env.ORIGIN}/success`,
-      cancel_url: "https://www.google.com",
+      cancel_url: `${process.env.ORIGIN}/fail`,
     });
     //
     //end paymen

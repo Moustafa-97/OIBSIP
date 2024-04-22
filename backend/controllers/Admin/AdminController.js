@@ -250,7 +250,9 @@ module.exports.admin_update_raw_by_order = asyncHandler(
         Promise.all(item.map((item) => item.ItemQuantaties)).then(
           (ItemQuantaties) => {
             rawItems.map((raw) => {
-              const quantity = ItemQuantaties.map((item) => item[raw.ItemName])
+              const quantity = ItemQuantaties.map((item) =>
+                item[raw.ItemName] ? item[raw.ItemName] : 0
+              )
                 .map((num, index) => num * orderQuantity[index])
                 .reduce((a, b) => a + b, 0);
               raw.Count -= quantity;
@@ -356,7 +358,7 @@ module.exports.admin_confirmed_orders = asyncHandler(async (req, res, next) => {
 // @desc POST /admin/refuseUserOrders
 // @access Private
 module.exports.admin_refuse_orders = asyncHandler(async (req, res, next) => {
-  const item = await order.findByIdAndDelete({ _id: req.body.id });
+  await order.findByIdAndDelete({ _id: req.body.id });
   const newResult = await order.find({});
   res.status(200).json({ data: newResult });
 });

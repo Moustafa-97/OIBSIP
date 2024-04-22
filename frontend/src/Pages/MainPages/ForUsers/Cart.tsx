@@ -12,15 +12,15 @@ export default function Cart() {
   const userOrders = userItems?.map((order: any) => order.order);
   const [url, seturl] = useState("");
   const handleCheckout = (e: Event) => {
-    console.log("yes");
     axios
       .post(`${process.env.REACT_APP_SERVER_DOMAIN}/user/order`, {
         orderDetails: e,
       })
       .then((res) => {
-        seturl(res.data.url);
+        window.location.href = res.data.url;
+        // seturl(res.data.url);
       })
-      .then(() => window.open(url))
+      // .then(() => (window.location.href = url))
       .catch((err) => {
         console.log(err);
       });
@@ -62,11 +62,7 @@ export default function Cart() {
 
         <div className="m-auto w-full flex justify-center items-center">
           {userOrders?.length === 0 ? (
-            <RedBtn
-              name="Back to menu"
-              isFunction={false}
-              link="/Menu"
-            />
+            <RedBtn name="Back to menu" isFunction={false} link="/Menu" />
           ) : (
             <RedBtn
               name="Checkout"

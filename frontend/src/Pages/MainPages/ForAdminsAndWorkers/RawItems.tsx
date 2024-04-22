@@ -56,7 +56,7 @@ export default function RawItems() {
 
   return (
     <>
-      <div className="h-screen w-full flex justify-center items-center flex-col gap-2 m-auto">
+      <div className="min-h-screen w-full flex justify-center items-center flex-col gap-2 m-auto">
         {raw && add ? (
           <div>
             <form
