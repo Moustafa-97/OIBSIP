@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 export default function RawItems() {
   const [raw, setRaw] = useState([]);
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState("");
   const [add, setAdd] = useState(false);
   const [itemToEdit, setItemToEdit] = useState({
     ItemName: "",
@@ -56,6 +56,11 @@ export default function RawItems() {
 
   return (
     <>
+      <header className="flex justify-center items-center flex-col m-auto lg:w-[35%] text-center gap-5 mb-[50px]">
+        <h2 className=" font-[playfair] text-[100px] leading-[96px]">
+          Raw Items
+        </h2>
+      </header>
       <div className="min-h-screen w-full flex justify-center items-center flex-col gap-2 m-auto">
         {raw && add ? (
           <div>
@@ -85,7 +90,10 @@ export default function RawItems() {
           </div>
         ) : (
           raw.map((raw: any) => (
-            <div className="w-1/2 bg-white shadow-md rounded-lg p-6 max-w-md">
+            <div
+              key={raw._id}
+              className="w-1/2 bg-white shadow-md rounded-lg p-6 max-w-md"
+            >
               <div className="flex justify-between items-center mb-4">
                 <div className="flex flex-col">
                   <span className="font-semibold text-gray-700">
@@ -115,7 +123,7 @@ export default function RawItems() {
                   </h3>
                   <p className="text-gray-500">
                     Quantity:{" "}
-                    {edit ? (
+                    {edit === raw._id ? (
                       <input
                         type="number"
                         onChange={(e) => handleNumber(e)}
@@ -127,16 +135,17 @@ export default function RawItems() {
                   </p>
                 </div>
                 <button
+                  key={raw._id}
                   onClick={() => {
-                    setEdit(!edit);
+                    setEdit(raw._id);
                     if (edit) {
                       handleEdit(raw._id);
-                      setEdit(false);
+                      setEdit("");
                     }
                   }}
                   className="text-blue-500"
                 >
-                  {edit ? "Save" : "Edit"}
+                  {edit === raw._id ? "Save" : "Edit"}
                 </button>
               </div>
             </div>

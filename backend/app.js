@@ -24,7 +24,7 @@ app.use(cookieParser());
 // cors
 app.use(
   cors({
-    origin: ["https://oibsip-1yxf.onrender.com", process.env.ORIGIN],
+    origin: ["https://oibsip.vercel.app", process.env.ORIGIN],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     optionSuccessStatus: 200,
@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === "production") {
 
   app.get("*", (req, res, next) => {
     return res.sendFile(
-      path.join(__dirname, "frontendmovieclient", "build", "index.html")
+      path.join(__dirname, "frontend", "build", "index.html")
     );
   });
 }

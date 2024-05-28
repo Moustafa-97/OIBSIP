@@ -8,19 +8,6 @@ import { userData } from "../../../../../Redux/reduxTools/HandleUserLogin";
 const logo = require("./img/Logo.png");
 
 export default function Header() {
-  // const [width, setWidth] = useState(window.innerWidth);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setWidth(window.innerWidth);
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
