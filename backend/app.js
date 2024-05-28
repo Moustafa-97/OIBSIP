@@ -24,7 +24,7 @@ app.use(cookieParser());
 // cors
 app.use(
   cors({
-    origin: ["https://oibsip.vercel.app", process.env.ORIGIN],
+    origin: ["https://oibsip-1yxf.onrender.com", process.env.ORIGIN],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     optionSuccessStatus: 200,
